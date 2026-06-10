@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shifany Arul Brabhaher</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --sand: #F5EFE4;
+    --warm-white: #FDFAF5;
+    --clay: #C4855A;
+    --clay-light: #E8C4A8;
+    --forest: #3D5A47;
+    --forest-light: #5A7A65;
+    --ink: #2C2416;
+    --muted: #7A6E62;
+    --divider: #DDD4C4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(253,250,245,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--divider);
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+  }
+
+  .nav-name {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--clay); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 2rem 4rem;
+    background: var(--sand);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,133,90,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(61,90,71,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--clay);
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 600;
+    line-height: 1.18;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+    letter-spacing: -0.02em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--forest);
+  }
+
+  .hero-bio {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 580px;
+    margin-bottom: 2.2rem;
+    line-height: 1.8;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .tag {
+    background: var(--warm-white);
+    border: 1px solid var(--divider);
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.32rem 0.8rem;
+    border-radius: 100px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--clay);
+    color: white;
+    padding: 0.7rem 1.6rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: #b07348; transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--forest);
+    border: 1.5px solid var(--forest);
+    padding: 0.7rem 1.6rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--forest);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 5rem 2rem;
+  }
+
+  .section-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 0.6rem;
+  }
+
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .section-intro {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 560px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  /* ABOUT */
+  #about { background: var(--warm-white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .about-block {
+    background: var(--sand);
+    border-radius: 12px;
+    padding: 1.6rem;
+    border: 1px solid var(--divider);
+  }
+
+  .about-block h3 {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+
+  .about-block p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--sand); }
+
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .project-card {
+    background: var(--warm-white);
+    border: 1px solid var(--divider);
+    border-radius: 14px;
+    padding: 2rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--clay);
+    border-radius: 4px 0 0 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+    transform: translateY(-2px);
+  }
+
+  .project-card:hover::before { opacity: 1; }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .project-type {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--clay);
+    background: rgba(196,133,90,0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .project-date {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .project-card h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+
+  .project-card p {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .project-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tool-tag {
+    background: var(--sand);
+    border: 1px solid var(--divider);
+    color: var(--forest);
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.22rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+  }
+
+  /* INTERESTS */
+  #interests { background: var(--warm-white); }
+
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1rem;
+  }
+
+  .interest-card {
+    padding: 1.6rem;
+    background: var(--sand);
+    border-radius: 12px;
+    border: 1px solid var(--divider);
+  }
+
+  .interest-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .interest-card h3 {
+    font-family: 'Lora', serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .interest-card p {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* CONTACT */
+  #contact {
+    background: var(--forest);
+    color: white;
+  }
+
+  #contact .section-label { color: var(--clay-light); }
+  #contact h2 { color: white; }
+
+  .contact-sub {
+    color: rgba(255,255,255,0.65);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    max-width: 480px;
+    line-height: 1.8;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    text-decoration: none;
+    padding: 0.65rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+
+  .contact-link:hover { background: rgba(255,255,255,0.2); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 1.4rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* DIVIDER */
+  .h-rule {
+    border: none;
+    border-top: 1px solid var(--divider);
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-name" href="#hero">Shifany Arul Brabhaher</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#interests">Interests</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Economics · Behavior · Data</div>
+    <h1>I study <em>why people decide</em><br>the way they do.</h1>
+    <p class="hero-bio">
+      I'm Shifany — an economics graduate from UC San Diego with a deep interest in the space where data, human psychology, and markets intersect. I build quantitative models, ask behavioral questions, and use AI to make sense of complex systems.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Behavioral Economics</span>
+      <span class="tag">Quantitative Modeling</span>
+      <span class="tag">Neuroeconomics</span>
+      <span class="tag">Data Pipelines</span>
+      <span class="tag">AI Tools</span>
+      <span class="tag">Market Strategy</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">See My Work</a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<hr class="h-rule"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-label">Background</div>
+    <h2>A little about me</h2>
+    <p class="section-intro">
+      I graduated from UC San Diego in June 2025 with a B.S. in Economics. What draws me to this field is the question underneath every dataset: <em>why do humans behave the way they do when the stakes are real?</em>
+    </p>
+    <div class="about-grid">
+      <div class="about-block">
+        <h3>Where I come from</h3>
+        <p>Originally from India, now based in the Bay Area. Being an international student taught me to be resourceful, adaptable, and to find patterns in unfamiliar systems — which turns out to be exactly what good research requires.</p>
+      </div>
+      <div class="about-block">
+        <h3>What I work with</h3>
+        <p>R, Python, Stata, SQL, Power BI, Excel — plus AI tools like Claude and GitHub Copilot. I'm drawn to projects that mix rigorous quantitative methods with real behavioral insight.</p>
+      </div>
+      <div class="about-block">
+        <h3>What I'm exploring</h3>
+        <p>Right now I'm fascinated by how physiological and psychological findings can be formally embedded in economic models — not just as footnotes, but as structural assumptions that change predictions.</p>
+      </div>
+      <div class="about-block">
+        <h3>Outside the models</h3>
+        <p>I find meaning in helping people navigate systems — whether that's academic resources, economic infrastructure, or just understanding why a market isn't working the way theory says it should.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="h-rule"/>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label">Work</div>
+    <h2>Projects</h2>
+    <p class="section-intro">A mix of independent research, consulting, and ongoing explorations. More to come as I build.</p>
+
+    <div class="projects-list">
+
+      <div class="project-card">
+        <div class="project-meta">
+          <span class="project-type">Research</span>
+          <span class="project-date">Jun – Sep 2025</span>
+        </div>
+        <h3>EV Charging Infrastructure & Consumer Behavior</h3>
+        <p>
+          Worked with a PhD researcher to understand why EV charging supply and demand diverge across California neighborhoods. I engineered an R-based data pipeline converting raw DMV vehicle registration records into zip-code-level EV adoption metrics — categorizing vehicles by manufacturer, fuel type, and plug type to identify infrastructure gaps.
+        </p>
+        <p>
+          Beyond the data, I modeled the <em>why</em>: housing density, renter-occupancy rates, income, commute patterns, and education as proxies for adoption and peak demand. I then connected findings to behavioral theory — rational inattention, price salience, and nudge theory — to analyze how price transparency shapes consumer charging choices and firm pricing strategy.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">R</span>
+          <span class="tool-tag">Stata</span>
+          <span class="tool-tag">Regression Modeling</span>
+          <span class="tool-tag">Behavioral Economics</span>
+          <span class="tool-tag">Geospatial Analysis</span>
+          <span class="tool-tag">DMV Data</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-meta">
+          <span class="project-type">Consulting</span>
+          <span class="project-date">Mar – Jun 2025</span>
+        </div>
+        <h3>Uber Autonomous Ride Adoption Strategy</h3>
+        <p>
+          Led a consulting team analyzing consumer adoption patterns for autonomous ride-hailing across key demographic segments. Combined primary interviews with competitive research to identify adoption barriers and opportunity segments, then delivered a go-to-market strategy projecting 50% rider adoption and 25% new user growth within 6 months of pilot launch.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">Market Research</span>
+          <span class="tool-tag">Consumer Interviews</span>
+          <span class="tool-tag">Go-to-Market Strategy</span>
+          <span class="tool-tag">Competitive Analysis</span>
+        </div>
+      </div>
+
+      <div class="project-card" style="border-style: dashed; opacity: 0.75;">
+        <div class="project-meta">
+          <span class="project-type" style="background: rgba(61,90,71,0.1); color: var(--forest);">Coming Soon</span>
+        </div>
+        <h3>Physiological Factors in Economic Decision-Making</h3>
+        <p>
+          An ongoing exploration into how findings from neuroscience and psychology — stress responses, attention limits, cognitive load — can be formally integrated into economic models rather than treated as behavioral "anomalies." Early stage. More soon.
+        </p>
+        <div class="project-tools">
+          <span class="tool-tag">Neuroeconomics</span>
+          <span class="tool-tag">Behavioral Theory</span>
+          <span class="tool-tag">Literature Review</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="h-rule"/>
+
+<!-- INTERESTS -->
+<section id="interests">
+  <div class="section-inner">
+    <div class="section-label">What drives me</div>
+    <h2>Interests & Ideas</h2>
+    <p class="section-intro">The threads I keep pulling on, across research and reading.</p>
+    <div class="interests-grid">
+      <div class="interest-card">
+        <div class="interest-icon">🧠</div>
+        <h3>Neuroeconomics</h3>
+        <p>How physiological states — stress, attention, emotion — shape economic decisions in ways standard utility theory can't capture.</p>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">💡</div>
+        <h3>Rational Inattention</h3>
+        <p>Why people ignore information that's right in front of them, and what that means for market design and policy.</p>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">🔁</div>
+        <h3>Nudge Theory</h3>
+        <p>How the framing, timing, and presentation of information changes behavior — and when nudges fail.</p>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">⚡</div>
+        <h3>Energy Markets & Infrastructure</h3>
+        <p>The economics of clean energy transitions, and how consumer behavior shapes adoption curves in ways that data alone misses.</p>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">🤖</div>
+        <h3>AI in Economic Analysis</h3>
+        <p>Using tools like Claude and Python to accelerate research workflows, model complex systems, and surface patterns at scale.</p>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">📊</div>
+        <h3>Market Structure</h3>
+        <p>How competition, information asymmetry, and firm strategy interact — especially in infrastructure-intensive industries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="h-rule"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Say hello</div>
+    <h2>Let's connect</h2>
+    <p class="contact-sub">
+      I'm open to research roles, data & strategy positions, and conversations about behavioral economics, AI, or anything in between. Always happy to talk.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:shifanyarul@gmail.com" class="contact-link">
+        ✉️ shifanyarul@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/shifanyarulbrabhaher-28478920b/" target="_blank" class="contact-link">
+        💼 LinkedIn
+      </a>
+      <a href="shifany_resume.pdf" class="contact-link" download>
+        📄 Download Resume
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Shifany Arul Brabhaher · Built with intention
+</footer>
+
+</body>
+</html>
