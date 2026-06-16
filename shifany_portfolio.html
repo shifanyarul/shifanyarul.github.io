@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shifany Arul Brabhaher</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  /* ── THEME TOKENS ── */
+  :root {
+    --navy:      #07101F;
+    --navy-mid:  #0C1A2E;
+    --navy-card: #101F35;
+    --border:    #1A2E47;
+    --blue:      #4A90B8;
+    --blue-lt:   #6AAED4;
+    --blue-dim:  rgba(74,144,184,0.1);
+    --white:     #EDF2F8;
+    --muted:     #7A90AA;
+    --faint:     #3A5068;
+    --gold:      #C8A96A;
+    --bg:        var(--navy);
+    --bg-mid:    var(--navy-mid);
+    --bg-card:   var(--navy-card);
+    --text:      var(--white);
+    --text-mid:  var(--muted);
+  }
+
+  [data-theme="light"] {
+    --bg:        #F5F7FA;
+    --bg-mid:    #FFFFFF;
+    --bg-card:   #FFFFFF;
+    --border:    #D8E2EE;
+    --text:      #0D1A2B;
+    --text-mid:  #4A6070;
+    --faint:     #8AA0B0;
+    --blue-dim:  rgba(74,144,184,0.08);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 68px;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    background: rgba(7,16,31,0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3.5rem;
+    z-index: 200;
+    transition: background 0.25s;
+  }
+
+  [data-theme="light"] nav {
+    background: rgba(245,247,250,0.94);
+  }
+
+  .nav-name {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--blue-lt); }
+
+  /* Theme toggle */
+  .theme-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 0.28rem 0.7rem;
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    white-space: nowrap;
+  }
+
+  .theme-btn:hover { border-color: var(--blue); color: var(--blue-lt); }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: var(--bg-mid);
+    border-bottom: 1px solid var(--border);
+    padding: 1.4rem 2rem;
+    z-index: 199;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-decoration: none;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--blue-lt); }
+
+  /* ── SECTIONS ── */
+  section {
+    min-height: 100vh;
+    padding: 120px 0 80px;
+    display: flex;
+    align-items: center;
+  }
+
+  .inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 3.5rem;
+    width: 100%;
+  }
+
+  hr.divider { border: none; border-top: 1px solid var(--border); }
+
+  /* ── LABELS ── */
+  .label {
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .label::before {
+    content: '';
+    display: inline-block;
+    width: 22px; height: 1px;
+    background: var(--blue);
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 600;
+    line-height: 1.16;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+
+  h1 em { font-style: italic; color: var(--blue-lt); }
+
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+
+  .intro {
+    font-size: 1rem;
+    color: var(--text-mid);
+    max-width: 570px;
+    line-height: 1.88;
+    margin-bottom: 2rem;
+  }
+
+  /* ── HOME ── */
+  #home {
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #home::before {
+    content: '';
+    position: absolute;
+    top: -180px; right: -180px;
+    width: 650px; height: 650px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,144,184,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .thesis-line {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--gold);
+    background: rgba(200,169,106,0.08);
+    border: 1px solid rgba(200,169,106,0.2);
+    border-radius: 4px;
+    padding: 0.38rem 0.9rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 0.24rem 0.76rem;
+    border-radius: 100px;
+  }
+
+  .skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .skill {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--blue);
+    background: var(--blue-dim);
+    border: 1px solid rgba(74,144,184,0.18);
+    padding: 0.24rem 0.7rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .cta { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 0.68rem 1.55rem;
+    border-radius: 5px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.18s, transform 0.13s;
+  }
+
+  .btn-primary:hover { background: var(--blue-lt); transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-mid);
+    border: 1px solid var(--border);
+    padding: 0.68rem 1.55rem;
+    border-radius: 5px;
+    font-size: 0.84rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.18s;
+  }
+
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue-lt); transform: translateY(-1px); }
+
+  /* ── INTERESTS ── */
+  #interests { background: var(--bg-mid); }
+
+  .int-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .i-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem;
+    transition: border-color 0.18s, transform 0.16s;
+  }
+
+  .i-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+
+  .i-card h3 {
+    font-family: 'Lora', serif;
+    font-size: 0.94rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .i-card p { font-size: 0.81rem; color: var(--text-mid); line-height: 1.65; }
+
+  .sublabel {
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .books {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .book {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.1rem;
+    transition: border-color 0.16s, transform 0.13s;
+  }
+
+  .book:hover { transform: translateY(-2px); }
+  .book.nf { border-top: 3px solid var(--blue); }
+  .book.fi { border-top: 3px solid var(--gold); }
+  .book.nf:hover { border-color: var(--blue); border-top-color: var(--blue); }
+  .book.fi:hover { border-color: var(--gold); border-top-color: var(--gold); }
+
+  .book h4 {
+    font-family: 'Lora', serif;
+    font-size: 0.87rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .book .au { font-size: 0.7rem; color: var(--text-mid); margin-bottom: 0.5rem; }
+  .book .note { font-size: 0.76rem; color: var(--faint); line-height: 1.5; font-style: italic; }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--bg); }
+
+  .proj-list { display: flex; flex-direction: column; gap: 1.3rem; }
+
+  .proj {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.9rem;
+    transition: border-color 0.18s, box-shadow 0.18s;
+  }
+
+  .proj:hover {
+    border-color: var(--blue);
+    box-shadow: 0 4px 24px rgba(74,144,184,0.07);
+  }
+
+  .proj-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .badges { display: flex; gap: 0.38rem; flex-wrap: wrap; }
+
+  .badge {
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.17rem 0.52rem;
+    border-radius: 3px;
+  }
+
+  .b-res { background: var(--blue-dim); color: var(--blue-lt); }
+  .b-wip { background: rgba(200,169,106,0.1); color: var(--gold); border: 1px solid rgba(200,169,106,0.22); }
+
+  .proj-date { font-size: 0.71rem; color: var(--faint); }
+
+  .proj h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.18rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.45rem;
+  }
+
+  .proj .attr {
+    font-size: 0.77rem;
+    font-style: italic;
+    color: var(--faint);
+    margin-bottom: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .proj p {
+    font-size: 0.89rem;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 0.65rem;
+  }
+
+  .proj p em { color: var(--blue-lt); font-style: italic; }
+
+  .tools { display: flex; flex-wrap: wrap; gap: 0.33rem; margin-top: 0.95rem; }
+
+  .tool {
+    font-size: 0.67rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    background: var(--bg-mid);
+    border: 1px solid var(--border);
+    padding: 0.16rem 0.52rem;
+    border-radius: 3px;
+  }
+
+  .proj-dl {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.1rem;
+    font-size: 0.77rem;
+    font-weight: 600;
+    color: var(--blue-lt);
+    border: 1.5px solid var(--blue);
+    padding: 0.36rem 0.88rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .proj-dl:hover { background: var(--blue-dim); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--bg-mid); min-height: auto; padding: 100px 0; }
+
+  .c-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+
+  .c-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.65rem 1.25rem;
+    border-radius: 7px;
+    font-size: 0.84rem;
+    font-weight: 500;
+    transition: border-color 0.18s, color 0.18s, transform 0.13s;
+  }
+
+  .c-link:hover { border-color: var(--blue); color: var(--blue-lt); transform: translateY(-1px); }
+
+  .c-note {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blue);
+    border-radius: 8px;
+    padding: 1.35rem 1.55rem;
+    font-size: 0.87rem;
+    color: var(--text-mid);
+    line-height: 1.82;
+    max-width: 540px;
+  }
+
+  .c-note strong { color: var(--text); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 1.4rem;
+    font-size: 0.71rem;
+    color: var(--faint);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    nav { padding: 0 1.4rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .inner { padding: 0 1.4rem; }
+    section { padding: 90px 0 60px; }
+    #home { align-items: flex-start; padding-top: 90px; }
+    .int-grid { grid-template-columns: 1fr; }
+    .books { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-name" href="#home">Shifany Arul Brabhaher</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#interests">Interests</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">☾ Dark</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home"      onclick="closeMenu()">Home</a>
+  <a href="#interests" onclick="closeMenu()">Interests</a>
+  <a href="#projects"  onclick="closeMenu()">Projects</a>
+  <a href="#contact"   onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- HOME -->
+<section id="home">
+  <div class="inner">
+    <div class="label">UC San Diego · Economics · Class of 2025</div>
+    <h1>My research connects behavioral economics<br>and quantitative methods to<br><em>real-world data — applied to<br>the questions that matter.</em></h1>
+
+    <div class="thesis-line">
+      How physiological and emotional states shape economic decisions in healthcare, energy, and beyond
+    </div>
+
+    <p class="intro">
+      I'm Shifany, an economist by training, a behavioral thinker by instinct. I build quantitative models, study what drives human decision-making, and use AI to surface patterns in complex systems.
+    </p>
+
+    <div class="tags">
+      <span class="tag">Behavioral Economics</span>
+      <span class="tag">Projection Bias</span>
+      <span class="tag">Rational Inattention</span>
+      <span class="tag">AI for Social Impact</span>
+      <span class="tag">Quantitative Research</span>
+      <span class="tag">Healthcare Economics</span>
+      <span class="tag">Energy Markets</span>
+    </div>
+
+    <div class="skills-row">
+      <span class="skill">R</span>
+      <span class="skill">Python</span>
+      <span class="skill">Stata</span>
+      <span class="skill">SQL</span>
+      <span class="skill">Excel Advanced</span>
+      <span class="skill">Power BI</span>
+      <span class="skill">Regression Modeling</span>
+      <span class="skill">Time Series</span>
+      <span class="skill">Claude API</span>
+    </div>
+
+    <div class="cta">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="shifany_resume.pdf" class="btn-ghost" download>Download Resume</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- INTERESTS -->
+<section id="interests">
+  <div class="inner">
+    <div class="label">What drives me</div>
+    <h2>Interests</h2>
+    <p class="intro">The questions I keep returning to across research, reading, and the models I build.</p>
+
+    <div class="int-grid">
+      <div class="i-card">
+        <h3>Neuroeconomics</h3>
+        <p>How physiological states stress, pain, visceral discomfort shape decisions in ways standard utility theory cannot model. My healthcare research tests this directly.</p>
+      </div>
+      <div class="i-card">
+        <h3>Projection Bias</h3>
+        <p>Why people systematically overestimate how much their current emotional or physical state will persist and how this distorts consequential decisions from healthcare to consumer behavior.</p>
+      </div>
+      <div class="i-card">
+        <h3>Rational Inattention</h3>
+        <p>Why people ignore information available to them when cognitive processing costs exceed expected benefits with direct applications to EV pricing, market design, and behavioral interventions.</p>
+      </div>
+      <div class="i-card">
+        <h3>Nudge Theory</h3>
+        <p>How framing, timing, and presentation of information changes behavior at scale and when nudges fail, which is an equally important and underexplored research question.</p>
+      </div>
+      <div class="i-card">
+        <h3>AI for Economic Research</h3>
+        <p>Using Claude and Python to accelerate quantitative pipelines, automate pattern detection, and model systems too complex for traditional econometric approaches alone.</p>
+      </div>
+      <div class="i-card">
+        <h3>AI for Social Impact</h3>
+        <p>How AI tools can be applied responsibly to help nonprofits, public health organizations, and communities turning real-world data into decisions that improve lives.</p>
+      </div>
+    </div>
+
+    <div class="sublabel">Reading</div>
+    <p style="font-size:0.86rem;color:var(--text-mid);margin-bottom:1.3rem;max-width:480px;">The books that shaped how I think split between those that changed my understanding of the world and those that changed how I feel about being in it.</p>
+
+    <div style="font-size:0.67rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint);margin-bottom:0.75rem;">Economics and Non-fiction</div>
+    <div class="books">
+      <div class="book nf">
+        <h4>The Psychology of Money</h4>
+        <div class="au">Morgan Housel</div>
+        <div class="note">Reframed how I think about risk, time, and the irrationality embedded in our most rational-seeming decisions.</div>
+      </div>
+      <div class="book nf">
+        <h4>Poor Economics</h4>
+        <div class="au">Banerjee and Duflo</div>
+        <div class="note">Changed how I think about poverty as a behavioral and structural problem deserving rigorous, empirical curiosity.</div>
+      </div>
+      <div class="book nf">
+        <h4>Nudge</h4>
+        <div class="au">Richard H. Thaler</div>
+        <div class="note">Made behavioral economics feel urgent and practical. Still shapes how I approach research design.</div>
+      </div>
+    </div>
+
+    <div style="font-size:0.67rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint);margin-bottom:0.75rem;margin-top:1rem;">Fiction</div>
+    <div class="books">
+      <div class="book fi">
+        <h4>Jane Eyre</h4>
+        <div class="au">Charlotte Bronte</div>
+        <div class="note">About self-respect, identity, and refusing to be diminished. Still feels radical.</div>
+      </div>
+      <div class="book fi">
+        <h4>Rebecca</h4>
+        <div class="au">Daphne du Maurier</div>
+        <div class="note">A masterclass in psychological complexity. Du Maurier builds a villain you understand, a narrator you ache for, and a haunting that lingers long after the last page. The questions it leaves about identity, obsession, and power stay with you.</div>
+      </div>
+      <div class="book fi">
+        <h4>The Book Thief</h4>
+        <div class="au">Markus Zusak</div>
+        <div class="note">Narrated by Death itself, it finds tenderness and meaning in the darkest chapter of human history. The way it treats words as both survival and weapon is something I have not found in any other book.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="inner">
+    <div class="label">Research</div>
+    <h2>Projects</h2>
+    <p class="intro">Two independent research projects applying behavioral economic theory to real real-world and geographic data.</p>
+
+    <div class="proj-list">
+
+      <div class="proj">
+        <div class="proj-top">
+          <div class="badges">
+            <span class="badge b-res">Research</span>
+            <span class="badge b-wip">In Progress</span>
+          </div>
+          <span class="proj-date">2026 Present</span>
+        </div>
+        <h3>Projection Bias and No-Show Behavior in Outpatient Allergy Scheduling</h3>
+        <p class="attr">Independent research project. Outpatient allergy clinic scheduling data combined with public pollen monitoring data.</p>
+        <p>
+          This study investigates why patients miss outpatient allergy appointments and proposes that the mechanism is behavioral, not logistical. Drawing on <em>projection bias</em> (Loewenstein, O'Donoghue and Rabin, 2003), the central hypothesis is that patients who book appointments during high-symptom periods systematically overestimate how much they will still need care when the appointment date arrives. When symptoms subside, the perceived urgency evaporates.
+        </p>
+        <p>
+          The allergy clinic is a uniquely powerful setting to test this because the patient's symptom state at booking normally unobservable can be proxied objectively using daily public pollen count data. For every appointment, I can measure the <em>symptom-decay score</em>: the difference in pollen conditions between booking date and appointment date. The core prediction is that no-show probability is highest when this gap is largest, controlling for lead time, time of day, day of week, season, and weather.
+        </p>
+        <p>
+          The research also draws on the <em>hot-cold empathy gap</em>: patients in visceral discomfort at the time of booking cannot accurately forecast how they will feel in a symptom-free state weeks later. If confirmed, the findings directly support low-cost operational interventions targeted reminders for high-risk bookings, seasonal lead time caps, and evidence-based overbooking models all acting on the schedule rather than the patient.
+        </p>
+        <div class="tools">
+          <span class="tool">Projection Bias</span>
+          <span class="tool">Hot-Cold Empathy Gap</span>
+          <span class="tool">Logistic Regression</span>
+          <span class="tool">Mixed Effects Models</span>
+          <span class="tool">Pollen Count Data</span>
+          <span class="tool">R</span>
+          <span class="tool">Healthcare Scheduling</span>
+          <span class="tool">Behavioral Economics</span>
+        </div>
+        <a href="Healthcare_Research_Proposal_Shifany.pdf" class="proj-dl" download>Download Research Proposal</a>
+      </div>
+
+      <div class="proj">
+        <div class="proj-top">
+          <div class="badges"><span class="badge b-res">Research</span></div>
+          <span class="proj-date">Jun Sep 2025</span>
+        </div>
+        <h3>EV Charging Infrastructure and Consumer Behavior</h3>
+        <p class="attr">Independent research contribution to a faculty-led project, UC San Diego Economics Department. Variable framework, R-based data pipeline, and behavioral economics analysis represent the author's independent contribution.</p>
+        <p>
+          This research investigates why EV charging supply and demand diverge systematically across California neighborhoods. An R-based data pipeline was engineered to convert raw California DMV vehicle registration records into zip-code-level EV adoption metrics, categorizing vehicles by manufacturer, fuel type, and plug compatibility to map infrastructure gaps.
+        </p>
+        <p>
+          The analysis modeled the <em>why</em> behind geographic variation: housing density, renter-occupancy rates, income, education, and commute patterns as proxies for adoption behavior. A variable framework spanning socioeconomic, transportation, infrastructure, policy, and behavioral dimensions was connected to theory including <em>rational inattention</em>, price salience, and nudge theory examining how price transparency shapes consumer charging choices and firm pricing strategy under competition.
+        </p>
+        <div class="tools">
+          <span class="tool">R</span>
+          <span class="tool">Stata</span>
+          <span class="tool">Regression Modeling</span>
+          <span class="tool">Time Series</span>
+          <span class="tool">Geospatial Analysis</span>
+          <span class="tool">California DMV Data</span>
+          <span class="tool">Rational Inattention</span>
+          <span class="tool">Nudge Theory</span>
+        </div>
+        <a href="EV_Charging_Research_Shifany.pdf" class="proj-dl" download>Download Research Paper</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="inner">
+    <div class="label">Get in touch</div>
+    <h2>Contact</h2>
+    <p class="intro">Open to research roles, analyst positions, and conversations about behavioral economics, AI for social impact, or anything at their intersection.</p>
+
+    <div class="c-links">
+      <a href="mailto:shifanyarul@gmail.com" class="c-link">shifanyarul@gmail.com</a>
+      <a href="https://www.linkedin.com/in/shifanyarulbrabhaher-28478920b/" target="_blank" class="c-link">LinkedIn</a>
+      <a href="shifany_resume.pdf" class="c-link" download>Download Resume</a>
+    </div>
+
+    <div class="c-note">
+      I am a recent UC San Diego Economics graduate with independent research experience in <strong>behavioral economics and quantitative data analysis</strong>. I am actively seeking roles where I can apply economics, AI tools, and behavioral insight to real-world problems. Based in the Bay Area and available immediately.
+    </div>
+  </div>
+</section>
+
+<footer>
+  Shifany Arul Brabhaher &nbsp;·&nbsp; shifanyarul@gmail.com &nbsp;·&nbsp; shifanyarul.github.io
+</footer>
+
+<script>
+  // Theme toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    const btn = document.getElementById('themeBtn');
+    if (html.getAttribute('data-theme') === 'dark') {
+      html.setAttribute('data-theme', 'light');
+      btn.textContent = '☾ Dark';
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      btn.textContent = '☀ Light';
+    }
+  }
+
+  // Hamburger menu
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
+  }
+
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
+  // Close menu on outside click
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburger');
+    if (!menu.contains(e.target) && !burger.contains(e.target)) {
+      menu.classList.remove('open');
+      burger.classList.remove('open');
+    }
+  });
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--blue-lt)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
